@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drone Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Drone Cinematography</h1>
+    <nav>
+      <a href="#about">Σχετικά</a>
+      <a href="#services">Υπηρεσίες</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Επικοινωνία</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="videos/DJI_0529.MP4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <h2>Cinematic Aerial Filming</h2>
+    <p>Επαγγελματικές εναέριες λήψεις</p>
+  </div>
+</section>
+
+  <section id="about">
+    <h2>Σχετικά με εμένα</h2>
+    <p>Επαγγελματικές λήψεις drone για εκδηλώσεις, ακίνητα και επιχειρήσεις.</p>
+  </section>
+
+  <section id="services">
+    <h2>Υπηρεσίες</h2>
+    <ul>
+      <li>Αεροφωτογραφία</li>
+      <li>Αεροβιντεοσκόπηση</li>
+      <li>Προωθητικά βίντεο</li>
+    </ul>
+  </section>
+
+  <section id="portfolio">
+  <h2>Portfolio</h2>
+
+  <div class="filters">
+  <button onclick="filterSelection('all')">Όλα</button>
+  <button onclick="filterSelection('wedding')">Γάμος</button>
+  <button onclick="filterSelection('landscapes')">Τοπία</button>
+  <button onclick="filterSelection('event')">Εκδηλώσεις</button>
+</div>
+
+  <div class="gallery">
+
+    <div class="gallery-item" data-category="wedding">
+  <img src="images/DJI_0504.JPG" alt="Γάμος">
+  <div class="overlay">Γάμος</div>
+</div>
+
+
+    <div class="gallery-item" data-category="landscapes">
+      <img src="images/santorini.jpg" alt="Drone 2">
+      <div class="overlay">Τοπία</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1508615070457-7baeba4003ab" alt="Drone 3">
+      <div class="overlay">ΧΡΩΜΑΤΑ</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7" alt="Drone 4">
+      <div class="overlay">ΣΠΙΤΙ</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Drone 5">
+      <div class="overlay">ΘΑΛΑΣΣΑ</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Drone 6">
+      <div class="overlay">ΒΟΥΝΟ</div>
+    </div>
+
+  </div>
+</section>
+
+<script src="script.js"></script>
+  <div class="lightbox" id="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-img" id="lightbox-img">
+</div>
+
+
+  <section id="contact">
+    <h2>Επικοινωνία</h2>
+    <p>Email: papageorge.drone@gmail.com</p>  
+
+
+  <form name="contact" method="POST" data-netlify="true" action="thank-you.html">
+    
+    <input type="hidden" name="form-name" value="contact">
+
+    <input type="text" name="name" placeholder="Όνομα" required>
+
+    <input type="email" name="email" placeholder="Email" required>
+
+    <textarea name="message" placeholder="Μήνυμα" required></textarea>
+
+
+    <label class="checkbox">
+      <input type="checkbox" required>
+      Συμφωνώ με την 
+      <a href="privacy.html" target="_blank">Πολιτική Απορρήτου</a>
+    </label>
+
+    <button type="submit">Αποστολή</button>
+
+  </form>
+</section>
+
+
+ <footer class="footer">
+  <div class="footer-content">
+    <p>© 2026 Papageorgiou Stauros – Drone Photography</p>
+    
+    <div class="footer-links">
+      <a href="terms.html">Όροι Χρήσης</a>
+      <a href="privacy.html">Πολιτική Απορρήτου</a>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
