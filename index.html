@@ -45,54 +45,59 @@
   <section id="portfolio">
   <h2>Portfolio</h2>
 
-  <div class="filters">
-  <button onclick="filterSelection('all')">Όλα</button>
-  <button onclick="filterSelection('wedding')">Γάμος</button>
-  <button onclick="filterSelection('landscapes')">Τοπία</button>
-  <button onclick="filterSelection('event')">Εκδηλώσεις</button>
-</div>
-
-  <div class="gallery">
-
-    <div class="gallery-item" data-category="wedding">
-  <img src="images/DJI_0504.JPG" alt="Γάμος">
-  <div class="overlay">Γάμος</div>
-</div>
 
 
-    <div class="gallery-item" data-category="landscapes">
-      <img src="images/santorini.jpg" alt="Drone 2">
-      <div class="overlay">Τοπία</div>
+<section class="categories">
+
+
+  <div class="category" onclick="toggleCategory('sea')">
+    <img src="images/DJI_0409.webp">
+    <div class="overlay">
+      <h2>ΘΑΛΑΣΣΑ</h2>
     </div>
-
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1508615070457-7baeba4003ab" alt="Drone 3">
-      <div class="overlay">ΧΡΩΜΑΤΑ</div>
-    </div>
-
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7" alt="Drone 4">
-      <div class="overlay">ΣΠΙΤΙ</div>
-    </div>
-
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Drone 5">
-      <div class="overlay">ΘΑΛΑΣΣΑ</div>
-    </div>
-
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Drone 6">
-      <div class="overlay">ΒΟΥΝΟ</div>
-    </div>
-
   </div>
+
+  <div class="category" onclick="toggleCategory('city')">
+    <img src="images/DJI_0504.webp">
+    <div class="overlay">
+      <h2>ΠΟΛΗ</h2>
+    </div>
+  </div>
+
+  <div class="category" onclick="toggleCategory('events')">
+    <img src="images/DJI_0446.webp">
+    <div class="overlay">
+      <h2>EVENTS</h2>
+    </div>
+  </div>
+
 </section>
 
-<script src="script.js"></script>
-  <div class="lightbox" id="lightbox">
+
+<section class="gallery">
+
+  <img src="images/DJI_0334.webp" class="photo sea">
+  <img src="images/DJI_0325.webp" class="photo sea">
+
+  <img src="images/DJI_0505.webp" class="photo city">
+  <img src="images/DJI_0484.webp" class="photo city">
+  <img src="images/IERAPETRA.webp" class="photo city">
+
+  <img src="images/DJI_0446.webp" class="photo events">
+  <img src="images/DJI_0460.webp" class="photo events">
+
+</section>
+
+
+
+<div id="lightbox">
   <span class="close">&times;</span>
-  <img class="lightbox-img" id="lightbox-img">
+  <span class="prev">&#10094;</span>
+  <span class="next">&#10095;</span>
+
+  <img id="lightbox-img">
 </div>
+
 
 
   <section id="contact">
@@ -135,5 +140,8 @@
 </footer>
 
 
+<script src="script.js"></script>
+
 </body>
 </html>
+
