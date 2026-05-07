@@ -85,12 +85,12 @@ button:hover {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.5); /* σκοτεινό overlay */
-  z-index: 2;
+  z-index: 10;
 }
 
 .hero-content {
   position: relative;
-  z-index: 3;
+  z-index: 11;
   text-align: center;
   padding: 20px;
 }
@@ -213,7 +213,7 @@ grid-template-columns:1fr;
 #lightbox{
 display:none;
 position:fixed;
-z-index:9999;
+z-index:5;
 top:0;
 left:0;
 width:100%;

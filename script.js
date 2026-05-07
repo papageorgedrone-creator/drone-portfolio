@@ -1,154 +1,77 @@
 let activeCategory = null;
+let currentIndex = 0;
+let visiblePhotos = [];
 
-function toggleCategory(category) {
+function toggleCategory(category, element) {
   const gallery = document.getElementById("gallery");
-  const hiddenPhotos = document.querySelectorAll("#hidden-photos .photo");
+  const photos = document.querySelectorAll(".photo");
 
   if (activeCategory === category) {
-    gallery.innerHTML = "";
+    photos.forEach(photo => photo.style.display = "none");
     activeCategory = null;
     return;
   }
 
-  gallery.innerHTML = "";
+  visiblePhotos = [];
 
-  hiddenPhotos.forEach(photo => {
+  photos.forEach(photo => {
     if (photo.classList.contains(category)) {
-      const clone = photo.cloneNode(true);
-      clone.style.display = "block";
-      gallery.appendChild(clone);
+      photo.style.display = "block";
+      visiblePhotos.push(photo);
+    } else {
+      photo.style.display = "none";
     }
   });
+
+  element.parentNode.insertBefore(gallery, element.nextSibling);
 
   activeCategory = category;
 }
 
-
-
-// LIGHTBOX
-
-const galleryImages = document.querySelectorAll(".photo");
+const photos = document.querySelectorAll(".photo");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
+const closeBtn = document.querySelector(".close");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
 
-galleryImages.forEach((img,index)=>{
-
-img.addEventListener("click",()=>{
-
-visiblePhotos = [...document.querySelectorAll(".photo")]
-.filter(photo => photo.style.display === "block");
-
-currentIndex = visiblePhotos.indexOf(img);
-
-openLightbox();
-
-});
-
+photos.forEach((photo, index) => {
+  photo.addEventListener("click", () => {
+    currentIndex = visiblePhotos.indexOf(photo);
+    openLightbox();
+  });
 });
 
 function openLightbox(){
-
-lightbox.style.display="flex";
-lightboxImg.src = visiblePhotos[currentIndex].src;
-
+  lightbox.style.display = "flex";
+  lightboxImg.src = visiblePhotos[currentIndex].src;
 }
 
-function closeLightbox(){
-
-lightbox.style.display="none";
-
+function showNext(){
+  currentIndex = (currentIndex + 1) % visiblePhotos.length;
+  openLightbox();
 }
 
-function nextImage(){
-
-currentIndex++;
-
-if(currentIndex >= visiblePhotos.length){
-currentIndex = 0;
+function showPrev(){
+  currentIndex =
+    (currentIndex - 1 + visiblePhotos.length) % visiblePhotos.length;
+  openLightbox();
 }
 
-fadeImage();
+nextBtn.addEventListener("click", showNext);
+prevBtn.addEventListener("click", showPrev);
 
-}
-
-function prevImage(){
-
-currentIndex--;
-
-if(currentIndex < 0){
-currentIndex = visiblePhotos.length - 1;
-}
-
-fadeImage();
-
-}
-
-function fadeImage(){
-
-lightboxImg.style.opacity = 0;
-
-setTimeout(()=>{
-
-lightboxImg.src = visiblePhotos[currentIndex].src;
-lightboxImg.style.opacity = 1;
-
-},200);
-
-}
-
-
-
-// BUTTONS
-
-document.querySelector(".next").onclick = nextImage;
-document.querySelector(".prev").onclick = prevImage;
-document.querySelector(".close").onclick = closeLightbox;
-
-
-
-// KEYBOARD
-
-document.addEventListener("keydown",function(e){
-
-if(lightbox.style.display === "flex"){
-
-if(e.key === "ArrowRight") nextImage();
-if(e.key === "ArrowLeft") prevImage();
-if(e.key === "Escape") closeLightbox();
-
-}
-
+closeBtn.addEventListener("click", () => {
+  lightbox.style.display = "none";
 });
 
-
-
-// SWIPE MOBILE
-
-let touchStartX = 0;
-let touchEndX = 0;
-
-lightbox.addEventListener("touchstart",e=>{
-touchStartX = e.changedTouches[0].screenX;
+document.addEventListener("keydown", e => {
+  if(lightbox.style.display === "flex"){
+    if(e.key === "ArrowRight") showNext();
+    if(e.key === "ArrowLeft") showPrev();
+    if(e.key === "Escape") lightbox.style.display = "none";
+  }
 });
 
-lightbox.addEventListener("touchend",e=>{
-
-touchEndX = e.changedTouches[0].screenX;
-
-if(touchEndX < touchStartX - 50){
-nextImage();
-}
-
-if(touchEndX > touchStartX + 50){
-prevImage();
-}
-
-});
-
-
-
-// Απενεργοποίηση δεξιού κλικ
-document.addEventListener("contextmenu", function (e) {
-  e.preventDefault();
-});
-
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("dragstart", e => e.preventDefault());
