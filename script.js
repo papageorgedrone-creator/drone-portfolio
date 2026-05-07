@@ -6,13 +6,16 @@ function toggleCategory(category, element) {
   const gallery = document.getElementById("gallery");
   const photos = document.querySelectorAll(".photo");
 
-  if (activeCategory === category) {
-    photos.forEach(photo => photo.style.display = "none");
-    activeCategory = null;
-    return;
-  }
+
+if (activeCategory === category) {
+  photos.forEach(photo => photo.style.display = "none");
+  gallery.style.display = "none";
+  activeCategory = null;
+  return;
+}
 
   visiblePhotos = [];
+gallery.style.display = "grid";
 
   photos.forEach(photo => {
     if (photo.classList.contains(category)) {
