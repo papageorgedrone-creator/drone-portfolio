@@ -1,42 +1,26 @@
-
 let activeCategory = null;
-let currentIndex = 0;
-let visiblePhotos = [];
 
-function toggleCategory(category){
+function toggleCategory(category) {
+  const gallery = document.getElementById("gallery");
+  const hiddenPhotos = document.querySelectorAll("#hidden-photos .photo");
 
-const photos = document.querySelectorAll(".photo");
+  if (activeCategory === category) {
+    gallery.innerHTML = "";
+    activeCategory = null;
+    return;
+  }
 
-if(activeCategory === category){
+  gallery.innerHTML = "";
 
-photos.forEach(photo=>{
-photo.style.display="none";
-});
+  hiddenPhotos.forEach(photo => {
+    if (photo.classList.contains(category)) {
+      const clone = photo.cloneNode(true);
+      clone.style.display = "block";
+      gallery.appendChild(clone);
+    }
+  });
 
-activeCategory = null;
-return;
-
-}
-
-visiblePhotos = [];
-
-photos.forEach(photo=>{
-
-if(photo.classList.contains(category)){
-
-photo.style.display="block";
-visiblePhotos.push(photo);
-
-}else{
-
-photo.style.display="none";
-
-}
-
-});
-
-activeCategory = category;
-
+  activeCategory = category;
 }
 
 
